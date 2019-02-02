@@ -1,30 +1,23 @@
-﻿using System;
+﻿using CourseSearch.Models;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace CourseSearch.Controllers
 {
 	public class HomeController : Controller
 	{
+		private readonly ApplicationDbContext context = new ApplicationDbContext();
+
 		public ActionResult Index()
 		{
-			return View();
-		}
+			IEnumerable<Course> courses =
+				context.Courses
+				.Include(c => c.Publisher)
+				.OrderByDescending(c => c.PublishedOn);
 
-		public ActionResult About()
-		{
-			ViewBag.Message = "Your application description page.";
-
-			return View();
-		}
-
-		public ActionResult Contact()
-		{
-			ViewBag.Message = "Your contact page.";
-
-			return View();
+			return View(courses);
 		}
 	}
 }
