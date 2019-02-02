@@ -1,10 +1,22 @@
-﻿
-@model IEnumerable<CourseSearch.Models.Course>
+﻿@model CourseSearch.ViewModels.CoursesViewModel
 @{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "Courses";
+}
+@using (Html.BeginForm("Search", "Courses"))
+{
+    <div class="form-group">
+        <div class="input-group mb-3">
+            @Html.TextBoxFor(m => m.SearchTerm, new { @class = "form-control", placeholder = "Seach courses" })
+            <div class="input-group-append">
+                <span class="input-group-text" id="basic-addon2">
+                    <i class="fas fa-search"></i>
+                </span>
+            </div>
+        </div>
+    </div>
 }
 
-@foreach (var course in Model)
+@foreach (var course in Model.Courses)
 {
     <div class="course">
         <div>

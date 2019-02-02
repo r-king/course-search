@@ -1,4 +1,5 @@
 ﻿using CourseSearch.Models;
+using CourseSearch.ViewModels;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -10,14 +11,25 @@ namespace CourseSearch.Controllers
 	{
 		private readonly ApplicationDbContext context = new ApplicationDbContext();
 
-		public ActionResult Index()
+		public ActionResult Index(string query = null)
 		{
 			IEnumerable<Course> courses =
 				context.Courses
 				.Include(c => c.Publisher)
 				.OrderByDescending(c => c.PublishedOn);
 
-			return View(courses);
+			if (!string.IsNullOrWhiteSpace(query))
+			{
+				courses = courses.Where(c => c.Title.Contains(query));
+			}
+
+			var homeViewModel = new CoursesViewModel
+			{
+				Courses = courses,
+				SearchTerm = query
+			};
+
+			return View("Courses", homeViewModel);
 		}
 	}
 }
