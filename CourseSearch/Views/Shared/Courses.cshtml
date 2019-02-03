@@ -15,25 +15,39 @@
         </div>
     </div>
 }
-
-@foreach (var course in Model.Courses)
-{
-    <div class="course">
-        <div>
-            <div class="course-title">
-                <a target="_blank" rel="noopener noreferrer" href="@course.Url">@course.Title</a>
-            </div>
-            <div class="course-details">
-                <div class="course-details-publisher">
-                    @course.Publisher.Name
-                </div>
-                <div class="course-details-date">
-                    @course.GetDisplayDate()
-                </div>
-            </div>
-        </div>
-        <div class="course-price">
-            @course.GetDisplayPrice()
-        </div>
+    <div id="courses-list">      
+        @Html.Partial("_CoursesPartial", Model.Courses)
     </div>
+
+@section scripts
+{
+    <script type="text/javascript">
+
+        var pageIndex = 1;
+
+        $(document).ready(function () {
+            $(window).scroll(function () {
+                if ($(window).scrollTop() ==
+                    $(document).height() - $(window).height()) {
+                    GetCourses();
+                }
+            });
+        });
+
+        function GetCourses() {
+            $.ajax({
+                url:'@Url.Action("GetCourses", "Home")',
+                data: { "page": pageIndex, "query": '@Model.SearchTerm' },               
+                success: function (response) {
+                    if (response != null) {
+                        $('#courses-list').append(response);
+                        pageIndex++;
+                    }
+                },
+                error: function (exception) {                
+                    alert("Error while retrieving data!");
+                }
+            });
+        };
+</script>
 }
