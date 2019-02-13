@@ -1,4 +1,4 @@
-﻿using CourseSearch.ViewModels;
+﻿using CourseSearch.Core.ViewModels;
 using System.Web.Mvc;
 
 namespace CourseSearch.Controllers

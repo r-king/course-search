@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using CourseSearch.Dtos;
-using CourseSearch.Models;
+using CourseSearch.Core.Dtos;
+using CourseSearch.Core.Models;
 
 namespace CourseSearch.App_Start
 {

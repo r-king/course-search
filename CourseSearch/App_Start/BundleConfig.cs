@@ -8,6 +8,11 @@ namespace CourseSearch
 		// For more information on bundling, visit https://go.microsoft.com/fwlink/?LinkId=301862
 		public static void RegisterBundles(BundleCollection bundles)
 		{
+
+			bundles.Add(new ScriptBundle("~/bundles/app").Include(
+						"~/Scripts/app/services/bookmarkService.js",
+						"~/Scripts/app/controllers/coursesController.js"));
+
 			bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
 						"~/Scripts/jquery-{version}.js"));
 

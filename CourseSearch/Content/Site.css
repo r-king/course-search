@@ -77,12 +77,19 @@ h6,
     padding-top: 3.5rem;
 }
 
-/* Page-level styles */
-
-.course {
-    border-bottom: 1px solid var(--secondary-bg-color);
-    padding: 30px 0;
+.fa-bookmark {
+    color: var(--primary-bg-color);
 }
+
+    .fa-bookmark:hover {
+        cursor: pointer;
+    }
+    /* Page-level styles */
+    .course {
+        border-bottom: 1px solid var(--secondary-bg-color);
+        padding: 30px 0;
+        display: flex;
+    }
 
 .course-title {
     font-size: medium;
@@ -115,5 +122,17 @@ h6,
     float: right;
     overflow: hidden;
     text-overflow: ellipsis;
-    white-space: nowrap;    
+    white-space: nowrap;
+    width: 100px;
+    margin: auto;    
+}
+
+.course-bookmark {
+    float: right;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100px;
+    margin: auto;
+    padding-right: 30px;
 }

@@ -1,4 +1,4 @@
-﻿@model CourseSearch.ViewModels.CoursesViewModel
+﻿@model CourseSearch.Core.ViewModels.CoursesViewModel
 @{
     ViewBag.Title = "Courses";
 }
@@ -15,15 +15,19 @@
         </div>
     </div>
 }
-    <div id="courses-list">      
-        @Html.Partial("_CoursesPartial", Model.Courses)
-    </div>
+    <div id="courses-list"></div>
 
 @section scripts
 {
     <script type="text/javascript">
 
-        var pageIndex = 1;
+        $(document).ready(function () {
+            CoursesController.init("#courses-list");
+        });
+
+        var pageIndex = 0;
+
+        GetCourses();
 
         $(document).ready(function () {
             $(window).scroll(function () {
@@ -44,7 +48,8 @@
                         pageIndex++;
                     }
                 },
-                error: function (exception) {                
+                error: function (exception) {
+                    console.log(exception)
                     alert("Error while retrieving data!");
                 }
             });

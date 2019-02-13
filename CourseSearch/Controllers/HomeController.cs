@@ -1,5 +1,7 @@
-﻿using CourseSearch.Models;
-using CourseSearch.ViewModels;
+﻿using CourseSearch.Core.Models;
+using CourseSearch.Core.ViewModels;
+using CourseSearch.Persitence;
+using Microsoft.AspNet.Identity;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -58,6 +60,9 @@ namespace CourseSearch.Controllers
 		/// <returns></returns>
 		public ActionResult GetCourses(int page, string query = null)
 		{
+
+			var userId = User.Identity.GetUserId();
+
 			IEnumerable<Course> courses;
 
 			if (!string.IsNullOrWhiteSpace(query))
@@ -78,7 +83,17 @@ namespace CourseSearch.Controllers
 					.Take(pageSize);
 			}
 
-			return PartialView("_CoursesPartial", courses);
+			var bookmarks = context.Bookmarks.Where(b => b.UserId == userId);
+
+			var viewModel = new CoursesViewModel
+			{
+				Courses = courses,
+				Bookmarks = bookmarks.ToLookup(b => b.CourseId),
+				ShowActions = User.Identity.IsAuthenticated,
+				SearchTerm = query
+			};
+
+			return PartialView("_CoursesPartial", viewModel);
 		}
 	}
 }

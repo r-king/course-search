@@ -1,5 +1,5 @@
-﻿using CourseSearch.Models;
-using CourseSearch.ViewModels;
+﻿using CourseSearch.Core.Models;
+using CourseSearch.Core.ViewModels;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
