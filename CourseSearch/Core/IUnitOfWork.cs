@@ -6,6 +6,8 @@ namespace CourseSearch.Core
 	{
 		IBookmarkRepository Bookmarks { get; }
 
+		ICourseRepository Courses { get; }
+
 		void Complete();
 	}
 }

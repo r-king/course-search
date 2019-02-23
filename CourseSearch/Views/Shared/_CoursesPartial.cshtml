@@ -2,40 +2,28 @@
 
 @foreach (var course in Model.Courses)
 {
-<div class="course">
-    <div style="width: -webkit-fill-available">
-        <div class="course-title">
-            <a target="_blank" rel="noopener noreferrer" href="@course.Url">@course.Title</a>
+    <div class="course">
+        <div style="width: -webkit-fill-available">
+            <div class="course-title">
+                <a target="_blank" rel="noopener noreferrer" href="@course.Url">@course.Title</a>
+            </div>
+            <div class="course-details">
+                <div class="course-details-publisher">
+                    @course.Publisher.Name
+                </div>
+                <div class="course-details-date">
+                    @course.GetDisplayDate()
+                </div>
+            </div>
         </div>
-        <div class="course-details">
-            <div class="course-details-publisher">
-                @course.Publisher.Name
+        @if (Model.ShowActions)
+        {
+            <div class="course-bookmark">
+                <i data-course-id="@course.Id" class="@(Model.Bookmarks.Contains(course.Id) ? "fas" : "far") fa-bookmark fa-lg js-toggle-bookmark"></i>
             </div>
-            <div class="course-details-date">
-                @course.GetDisplayDate()
-            </div>
+        }
+        <div class="course-price">
+            @course.GetDisplayPrice()
         </div>
     </div>
-    @if (Model.ShowActions)
-    {
-        <div class="course-bookmark">
-
-            <i data-course-id="@course.Id" class="@(Model.Bookmarks.Contains(course.Id) ? "fas" : "far") fa-bookmark fa-lg js-toggle-bookmark"></i>
-
-            @*@if (Model.Bookmarks.Contains(course.Id))
-            {
-                <i class="fas fa-bookmark"></i>
-            }
-            else
-            {
-                <i class="far fa-bookmark"></i>
-            }*@
-        </div>
-    }
-    <div class="course-price">
-        @course.GetDisplayPrice()
-    </div>
-
-
-</div>
 }

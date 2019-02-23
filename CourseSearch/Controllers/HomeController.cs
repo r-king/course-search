@@ -1,9 +1,6 @@
-﻿using CourseSearch.Core.Models;
+﻿using CourseSearch.Core;
 using CourseSearch.Core.ViewModels;
-using CourseSearch.Persitence;
 using Microsoft.AspNet.Identity;
-using System.Collections.Generic;
-using System.Data.Entity;
 using System.Linq;
 using System.Web.Mvc;
 
@@ -11,7 +8,12 @@ namespace CourseSearch.Controllers
 {
 	public class HomeController : Controller
 	{
-		private readonly ApplicationDbContext context = new ApplicationDbContext();
+		private readonly IUnitOfWork unitOfWork;
+
+		public HomeController(IUnitOfWork unitOfWork)
+		{
+			this.unitOfWork = unitOfWork;
+		}
 
 		/// <summary>
 		/// number of records to return when quering courses
@@ -25,27 +27,9 @@ namespace CourseSearch.Controllers
 		/// <returns></returns>
 		public ActionResult Index(string query = null)
 		{
-			IEnumerable<Course> courses;
-
-			if (!string.IsNullOrWhiteSpace(query))
-			{
-				courses = context.Courses
-				   .Where(c => c.Title.Contains(query))
-				   .Take(pageSize)
-				   .Include(c => c.Publisher)
-				   .OrderByDescending(c => c.PublishedOn);
-			}
-			else
-			{
-				courses = context.Courses
-				   .Take(pageSize)
-				   .Include(c => c.Publisher)
-				   .OrderByDescending(c => c.PublishedOn);
-			}
-
 			var homeViewModel = new CoursesViewModel
 			{
-				Courses = courses,
+				Courses = null,
 				SearchTerm = query
 			};
 
@@ -60,30 +44,11 @@ namespace CourseSearch.Controllers
 		/// <returns></returns>
 		public ActionResult GetCourses(int page, string query = null)
 		{
-
 			var userId = User.Identity.GetUserId();
 
-			IEnumerable<Course> courses;
+			var courses = unitOfWork.Courses.GetCourses(page, pageSize, query);
 
-			if (!string.IsNullOrWhiteSpace(query))
-			{
-				courses = context.Courses
-					.Where(c => c.Title.Contains(query))
-					.Include(c => c.Publisher)
-					.OrderByDescending(c => c.PublishedOn)
-					.Skip(page * pageSize)
-					.Take(pageSize);
-			}
-			else
-			{
-				courses = context.Courses
-					.Include(c => c.Publisher)
-					.OrderByDescending(c => c.PublishedOn)
-					.Skip(page * pageSize)
-					.Take(pageSize);
-			}
-
-			var bookmarks = context.Bookmarks.Where(b => b.UserId == userId);
+			var bookmarks = unitOfWork.Bookmarks.GetUserBookmarks(userId);
 
 			var viewModel = new CoursesViewModel
 			{

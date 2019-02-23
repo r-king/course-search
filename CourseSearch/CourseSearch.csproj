@@ -230,6 +230,7 @@
     <Compile Include="Core\Dtos\PublisherDto.cs" />
     <Compile Include="Core\IUnitOfWork.cs" />
     <Compile Include="Core\Repositories\IBookmarkRepository.cs" />
+    <Compile Include="Core\Repositories\ICourseRepository.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -265,6 +266,7 @@
     <Compile Include="Core\ViewModels\SendCodeViewModel.cs" />
     <Compile Include="Core\ViewModels\VerifyCodeViewModel.cs" />
     <Compile Include="Persitence\Repositories\BookmarkRepository.cs" />
+    <Compile Include="Persitence\Repositories\CourseRepository.cs" />
     <Compile Include="Persitence\UnitOfWork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -368,10 +370,10 @@
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\Shared\Courses.cshtml" />
     <Content Include="Views\Shared\_CoursesPartial.cshtml" />
+    <Content Include="Views\Courses\Bookmarked.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Courses\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

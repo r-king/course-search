@@ -1,27 +1,3 @@
-﻿
-@model IEnumerable<CourseSearch.Core.Models.Course>
-@{
+﻿@{
     ViewBag.Title = "Home Page";
-}
-
-@foreach (var course in Model)
-{
-    <div class="course">
-        <div>
-            <div class="course-title">
-                <a target="_blank" rel="noopener noreferrer" href="@course.Url">@course.Title</a>
-            </div>
-            <div class="course-details">
-                <div class="course-details-publisher">
-                    @course.Publisher.Name
-                </div>
-                <div class="course-details-date">
-                    @course.GetDisplayDate()
-                </div>
-            </div>
-        </div>
-        <div class="course-price">
-            @course.GetDisplayPrice()
-        </div>
-    </div>
 }
