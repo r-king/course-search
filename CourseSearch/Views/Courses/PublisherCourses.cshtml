@@ -1,0 +1,17 @@
+﻿@model CourseSearch.Core.ViewModels.PublisherCoursesViewModel
+
+<h4>@Model.Publisher.Name</h4>
+
+<div id="courses-list">
+    @Html.Partial("_CoursesPartial", Model.CoursesViewModel)
+</div>
+
+@section scripts
+{
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            CoursesController.init("#courses-list");
+        });
+    </script>
+}

@@ -8,6 +8,8 @@ namespace CourseSearch.Core
 
 		ICourseRepository Courses { get; }
 
+		IPublisherRepository Publishers { get; }
+
 		void Complete();
 	}
 }

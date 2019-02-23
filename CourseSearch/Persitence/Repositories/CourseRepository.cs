@@ -47,5 +47,12 @@ namespace CourseSearch.Persitence.Repositories
 
 			return courses;
 		}
+
+		public IEnumerable<Course> GetPublisherCourses(int publisherId)
+		{
+			return context.Courses
+				.Include(c => c.Publisher)
+				.Where(c => c.PublisherId == publisherId);
+		}
 	}
 }

@@ -9,7 +9,9 @@
             </div>
             <div class="course-details">
                 <div class="course-details-publisher">
-                    @course.Publisher.Name
+                    <a href="@Url.Action("PublisherCourses", "Courses", new { id = course.Publisher.Id })">
+                        @course.Publisher.Name
+                    </a>
                 </div>
                 <div class="course-details-date">
                     @course.GetDisplayDate()

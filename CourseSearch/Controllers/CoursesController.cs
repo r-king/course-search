@@ -40,5 +40,28 @@ namespace CourseSearch.Controllers
 
 			return View(viewModel);
 		}
+
+		public ViewResult PublisherCourses(int id)
+		{
+			var userId = User.Identity.GetUserId();
+
+			var courses = unitOfWork.Courses
+				.GetPublisherCourses(id);
+
+			var bookmarks = unitOfWork.Bookmarks.GetUserBookmarks(userId);
+
+			var viewModel = new PublisherCoursesViewModel
+			{
+				CoursesViewModel = new CoursesViewModel
+				{
+					Courses = courses,
+					ShowActions = User.Identity.IsAuthenticated,
+					Bookmarks = bookmarks.ToLookup(b => b.CourseId)
+				},
+				Publisher = unitOfWork.Publishers.GetPublisher(id)
+			};
+
+			return View(viewModel);
+		}
 	}
 }
