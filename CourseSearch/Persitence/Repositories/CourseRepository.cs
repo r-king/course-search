@@ -23,6 +23,11 @@ namespace CourseSearch.Persitence.Repositories
 				.Include(b => b.Publisher);
 		}
 
+		public Course GetCourse(int id)
+		{
+			return context.Courses.First(c => c.Id == id);
+		}
+
 		public IEnumerable<Course> GetCourses(int page, int pageSize, string query)
 		{
 			IEnumerable<Course> courses;

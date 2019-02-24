@@ -10,6 +10,10 @@ namespace CourseSearch.Core
 
 		IPublisherRepository Publishers { get; }
 
+		IChannelRepository Channels { get; }
+
+		IChannelCourseRepository ChannelCourses { get; }
+
 		void Complete();
 	}
 }

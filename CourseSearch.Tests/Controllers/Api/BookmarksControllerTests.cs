@@ -1,5 +1,6 @@
 ﻿using CourseSearch.Controllers.Api;
 using CourseSearch.Core;
+using CourseSearch.Core.Dtos;
 using CourseSearch.Core.Models;
 using CourseSearch.Core.Repositories;
 using CourseSearch.Tests.Extensions;
@@ -37,7 +38,7 @@ namespace CourseSearch.Tests.Controllers.Api
 
 			repository.Setup(b => b.GetBookmark(userId, 1)).Returns(bookmark);
 
-			var result = controller.AddBookmark(1);
+			var result = controller.AddBookmark(new BookmarkDto { CourseId = 1 });
 
 			result.Should().BeOfType<BadRequestErrorMessageResult>();
 		}
@@ -49,7 +50,7 @@ namespace CourseSearch.Tests.Controllers.Api
 
 			repository.Setup(b => b.GetBookmark(userId, 1)).Returns(bookmark);
 
-			var result = controller.AddBookmark(2);
+			var result = controller.AddBookmark(new BookmarkDto { CourseId = 2 });
 
 			result.Should().BeOfType<OkResult>();
 		}

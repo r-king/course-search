@@ -10,6 +10,8 @@ namespace CourseSearch.App_Start
 		{
 			CreateMap<Course, CourseDto>();
 			CreateMap<Publisher, PublisherDto>();
+			CreateMap<Channel, ChannelDto>();
+			CreateMap<ChannelCourse, ChannelCourseDto>();
 		}
 	}
 }

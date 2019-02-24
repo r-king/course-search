@@ -119,6 +119,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\Api\BookmarksControllerTests.cs" />
+    <Compile Include="Controllers\Api\ChannelsControllerTests.cs" />
     <Compile Include="Extensions\ApiControllerExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -14,6 +14,10 @@ namespace CourseSearch.Persitence
 
 		public IPublisherRepository Publishers { get; private set; }
 
+		public IChannelRepository Channels { get; private set; }
+
+		public IChannelCourseRepository ChannelCourses { get; private set; }
+
 		public UnitOfWork(ApplicationDbContext context)
 		{
 			this.context = context;
@@ -21,6 +25,8 @@ namespace CourseSearch.Persitence
 			Bookmarks = new BookmarkRepository(context);
 			Courses = new CourseRepository(context);
 			Publishers = new PublisherRepository(context);
+			Channels = new ChannelRepository(context);
+			ChannelCourses = new ChannelCourseRepository(context);
 		}
 
 		public void Complete()

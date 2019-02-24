@@ -10,6 +10,10 @@ namespace CourseSearch.Persitence.EntityConfigurations
 			HasMany(a => a.Bookmarks)
 				.WithRequired()
 				.HasForeignKey(a => a.UserId);
+
+			HasMany(a => a.Channels)
+				.WithRequired()
+				.HasForeignKey(a => a.UserId);
 		}
 	}
 }

@@ -222,14 +222,21 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\Api\BookmarksController.cs" />
+    <Compile Include="Controllers\Api\ChannelsController.cs" />
     <Compile Include="Controllers\CoursesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Core\Dtos\BookmarkDto.cs" />
+    <Compile Include="Core\Dtos\ChannelCourseDto.cs" />
+    <Compile Include="Core\Dtos\ChannelDto.cs" />
     <Compile Include="Core\Dtos\CourseDto.cs" />
     <Compile Include="Core\Dtos\PublisherDto.cs" />
     <Compile Include="Core\IUnitOfWork.cs" />
+    <Compile Include="Core\Models\Channel.cs" />
+    <Compile Include="Core\Models\ChannelCourse.cs" />
     <Compile Include="Core\Repositories\IBookmarkRepository.cs" />
+    <Compile Include="Core\Repositories\IChannelCourseRepository.cs" />
+    <Compile Include="Core\Repositories\IChannelRepository.cs" />
     <Compile Include="Core\Repositories\ICourseRepository.cs" />
     <Compile Include="Core\Repositories\IPublisherRepository.cs" />
     <Compile Include="Core\ViewModels\PublisherCoursesViewModel.cs" />
@@ -238,10 +245,20 @@
     </Compile>
     <Compile Include="Persitence\EntityConfigurations\ApplicationUserConfiguration.cs" />
     <Compile Include="Persitence\EntityConfigurations\BookmarkConfiguration.cs" />
+    <Compile Include="Persitence\EntityConfigurations\ChannelConfiguration.cs" />
+    <Compile Include="Persitence\EntityConfigurations\ChannelCourseConfiguration.cs" />
     <Compile Include="Persitence\EntityConfigurations\CourseConfiguration.cs" />
     <Compile Include="Persitence\Migrations\201902132129021_init.cs" />
     <Compile Include="Persitence\Migrations\201902132129021_init.Designer.cs">
       <DependentUpon>201902132129021_init.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Persitence\Migrations\201902231656216_channels.cs" />
+    <Compile Include="Persitence\Migrations\201902231656216_channels.Designer.cs">
+      <DependentUpon>201902231656216_channels.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Persitence\Migrations\201902241042170_channelDescription.cs" />
+    <Compile Include="Persitence\Migrations\201902241042170_channelDescription.Designer.cs">
+      <DependentUpon>201902241042170_channelDescription.cs</DependentUpon>
     </Compile>
     <Compile Include="Persitence\Migrations\Configuration.cs" />
     <Compile Include="Persitence\ApplicationDbContext.cs" />
@@ -268,6 +285,8 @@
     <Compile Include="Core\ViewModels\SendCodeViewModel.cs" />
     <Compile Include="Core\ViewModels\VerifyCodeViewModel.cs" />
     <Compile Include="Persitence\Repositories\BookmarkRepository.cs" />
+    <Compile Include="Persitence\Repositories\ChannelCourseRepository.cs" />
+    <Compile Include="Persitence\Repositories\ChannelRepository.cs" />
     <Compile Include="Persitence\Repositories\CourseRepository.cs" />
     <Compile Include="Persitence\Repositories\PublisherRepository.cs" />
     <Compile Include="Persitence\UnitOfWork.cs" />
@@ -287,6 +306,7 @@
     <Content Include="Content\site.css" />
     <Content Include="Scripts\app\controllers\coursesController.js" />
     <Content Include="Scripts\app\services\bookmarkService.js" />
+    <Content Include="Scripts\app\services\channelService.js" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -393,6 +413,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Persitence\Migrations\201902132129021_init.resx">
       <DependentUpon>201902132129021_init.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Persitence\Migrations\201902231656216_channels.resx">
+      <DependentUpon>201902231656216_channels.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Persitence\Migrations\201902241042170_channelDescription.resx">
+      <DependentUpon>201902241042170_channelDescription.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

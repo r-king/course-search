@@ -12,9 +12,12 @@ namespace CourseSearch.Core.Models
 	{
 		public ICollection<Bookmark> Bookmarks { get; set; }
 
+		public ICollection<Channel> Channels { get; set; }
+
 		public ApplicationUser()
 		{
 			Bookmarks = new Collection<Bookmark>();
+			Channels = new Collection<Channel>();
 		}
 
 		public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)

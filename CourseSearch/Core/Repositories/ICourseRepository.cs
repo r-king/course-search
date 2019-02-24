@@ -9,6 +9,8 @@ namespace CourseSearch.Core.Repositories
 
 		IEnumerable<Course> GetBookmarkedCourses(string userId);
 
-		IEnumerable<Course> GetPublisherCourses(int publisherId);		
+		IEnumerable<Course> GetPublisherCourses(int publisherId);
+
+		Course GetCourse(int id);
 	}
 }

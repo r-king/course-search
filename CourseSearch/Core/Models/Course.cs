@@ -22,9 +22,12 @@ namespace CourseSearch.Core.Models
 
 		public ICollection<Bookmark> Bookmarks { get; private set; }
 
+		public ICollection<ChannelCourse> ChannelCourses { get; set; }
+
 		public Course()
 		{
 			Bookmarks = new Collection<Bookmark>();
+			ChannelCourses = new Collection<ChannelCourse>();
 		}
 
 		public string GetDisplayDate()
