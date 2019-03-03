@@ -1,4 +1,4 @@
-﻿var channelService = function () {
+﻿var ChannelService = function () {
     var createChannel = function (channelName, channelDescription, done, fail) {
         $.post($('base').attr('href') + "/api/channels/Create", { Name: channelName, Description: channelDescription })
             .done(done)
@@ -7,7 +7,7 @@
 
     var removeChannel = function (channelId, done, fail) {
         $.ajax({
-            url: $('base').attr('href') + "/api/channels/" + channelId,
+            url: $('base').attr('href') + "/api/channels/Remove/" + channelId,
             method: "DELETE"
         })
             .done(done)
@@ -34,6 +34,6 @@
         createChannel: createChannel,
         removeChannel: removeChannel,
         addCourseToChannel: addCourseToChannel,
-        removeCourseFromChannel
+        removeCourseFromChannel: removeCourseFromChannel        
     };
 }();

@@ -9,8 +9,10 @@ namespace CourseSearch.Core.Repositories
 
 		void RemoveCourseFromChannel(ChannelCourse channelCourse);
 
-		IEnumerable<ChannelCourse> GetChannelCourses(int channelId);
+		IEnumerable<Course> GetCourses(int channelId);
 
 		ChannelCourse GetChannelCourse(int channelId, int courseId);
+
+		IEnumerable<ChannelCourse> GetChannelCourses(int channelId);
 	}
 }

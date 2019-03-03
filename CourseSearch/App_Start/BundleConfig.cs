@@ -11,7 +11,9 @@ namespace CourseSearch
 
 			bundles.Add(new ScriptBundle("~/bundles/app").Include(
 						"~/Scripts/app/services/bookmarkService.js",
-						"~/Scripts/app/controllers/coursesController.js"));
+						"~/Scripts/app/services/channelService.js",
+						"~/Scripts/app/controllers/coursesController.js",
+						"~/Scripts/app/controllers/channelsController.js"));
 
 			bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
 						"~/Scripts/jquery-{version}.js"));
@@ -25,7 +27,8 @@ namespace CourseSearch
 						"~/Scripts/modernizr-*"));
 
 			bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-					  "~/Scripts/bootstrap.js"));
+						"~/Scripts/umd/popper.min.js",
+						"~/Scripts/bootstrap.js"));
 
 			bundles.Add(new StyleBundle("~/Content/css").Include(
 					  "~/Content/bootstrap.css",

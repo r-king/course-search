@@ -223,6 +223,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\Api\BookmarksController.cs" />
     <Compile Include="Controllers\Api\ChannelsController.cs" />
+    <Compile Include="Controllers\ChannelsController.cs" />
     <Compile Include="Controllers\CoursesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -239,6 +240,10 @@
     <Compile Include="Core\Repositories\IChannelRepository.cs" />
     <Compile Include="Core\Repositories\ICourseRepository.cs" />
     <Compile Include="Core\Repositories\IPublisherRepository.cs" />
+    <Compile Include="Core\ViewModels\ChannelDetailsViewModel.cs" />
+    <Compile Include="Core\ViewModels\ChannelFormViewModel.cs" />
+    <Compile Include="Core\ViewModels\ChannelsViewModel.cs" />
+    <Compile Include="Core\ViewModels\ChannelViewModel.cs" />
     <Compile Include="Core\ViewModels\PublisherCoursesViewModel.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -304,6 +309,7 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\site.css" />
+    <Content Include="Scripts\app\controllers\channelsController.js" />
     <Content Include="Scripts\app\controllers\coursesController.js" />
     <Content Include="Scripts\app\services\bookmarkService.js" />
     <Content Include="Scripts\app\services\channelService.js" />
@@ -395,6 +401,9 @@
     <Content Include="Views\Shared\_CoursesPartial.cshtml" />
     <Content Include="Views\Courses\Bookmarked.cshtml" />
     <Content Include="Views\Courses\PublisherCourses.cshtml" />
+    <Content Include="Views\Channels\Index.cshtml" />
+    <Content Include="Views\Channels\Details.cshtml" />
+    <Content Include="Views\Channels\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

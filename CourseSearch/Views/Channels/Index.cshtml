@@ -1,0 +1,70 @@
+﻿@model CourseSearch.Core.ViewModels.ChannelsViewModel
+
+<div style="display: flex">
+    <h4>My Channels</h4>
+    <div style="float: right; margin-left: auto;">
+        <button class="btn btn-primary" id="createChannelBtn" data-toggle="modal" data-target="#createModal">
+            Create channel
+        </button>
+    </div>
+</div>
+<div>
+    <ul class="channel-list mt-4">
+        @foreach (var channel in Model.Channels)
+        {
+            <li class="channel-item">
+                <a class="card" href='@Url.Action("Details", "Channels", new { Id = channel.Id })'>
+                    <div class="card-body" style="background: linear-gradient(rgba(2, 119, 189, 0.8), rgba(2, 119, 189, 0.8)), url(@(channel.ChannelCourses.FirstOrDefault() != null ? channel.ChannelCourses.FirstOrDefault().Course.ImageUrl : "")) center 20% / cover no-repeat;">
+                        <h5 class="card-title">@channel.Name</h5>
+                        <p>@channel.Description</p>
+                    </div>
+                </a>
+            </li>
+        }
+    </ul>
+</div>
+
+<div class="modal" tabindex="-1" role="dialog" id="createModal">
+
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" id="create-channel">
+                @Html.Action("Create", "Channels")
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script>
+
+        // override default submit action
+        $('#create-channel').on('click', '#createChannelBtn', function (e) {
+            e.preventDefault();
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("Create", "Channels")',
+                data: $('#form-channel').serialize(),
+                success: function (result) {
+                    if (result.redirectTo) {
+                        window.location.href = result.redirectTo;
+                    } else {
+                        $('#create-channel').html(result);
+                    }
+                },
+                error: function () {
+
+                }
+            });
+        });
+    </script>
+
+}

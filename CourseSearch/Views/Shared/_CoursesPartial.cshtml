@@ -20,7 +20,20 @@
         </div>
         @if (Model.ShowActions)
         {
-            <div class="course-bookmark">
+            // add to channel
+            <div class="dropdown course-action">
+                <i class="fas fa-ellipsis-h" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                </i>
+                <ul class="dropdown-menu dropright" aria-labelledby="dropdownMenuButton">
+                    <li class="dropdown-submenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <a class="dropdown-item dropdown-toggle js-toggle-channels" href="#" data-course-id="@course.Id">Add to channel</a>
+                        <ul class="dropdown-menu dropdown-menu-form"></ul>
+                    </li>
+                </ul>
+            </div>
+
+            // bookmarks
+            <div class="course-action">
                 <i data-course-id="@course.Id" class="@(Model.Bookmarks.Contains(course.Id) ? "fas" : "far") fa-bookmark fa-lg js-toggle-bookmark"></i>
             </div>
         }

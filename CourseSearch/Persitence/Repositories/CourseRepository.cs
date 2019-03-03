@@ -25,7 +25,7 @@ namespace CourseSearch.Persitence.Repositories
 
 		public Course GetCourse(int id)
 		{
-			return context.Courses.First(c => c.Id == id);
+			return context.Courses.FirstOrDefault(c => c.Id == id);
 		}
 
 		public IEnumerable<Course> GetCourses(int page, int pageSize, string query)

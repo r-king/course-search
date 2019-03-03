@@ -1,7 +1,10 @@
 ﻿using CourseSearch.Core;
 using CourseSearch.Core.Dtos;
 using CourseSearch.Core.Models;
+using CourseSearch.Core.ViewModels;
 using Microsoft.AspNet.Identity;
+using System.Collections.Generic;
+using System.Linq;
 using System.Web.Http;
 
 namespace CourseSearch.Controllers.Api
@@ -120,6 +123,35 @@ namespace CourseSearch.Controllers.Api
 			unitOfWork.Complete();
 
 			return Ok();
+		}
+
+		/// <summary>
+		/// gets users list of channels which includes if course is in the channel
+		/// </summary>
+		/// <param name="id">id of course</param>
+		/// <returns></returns>
+		[Route("api/Channels/GetUserChannelsForCourse/{id}")]
+		[HttpGet]
+		public IHttpActionResult GetUserChannelsForCourse(int id)
+		{
+			var userId = User.Identity.GetUserId();
+
+			IEnumerable<Channel> channels = unitOfWork.Channels.GetUserChannels(userId);
+
+			var viewModel = new List<ChannelViewModel>();
+
+			foreach (var channel in channels)
+			{
+				viewModel.Add(new ChannelViewModel
+				{
+					Id = channel.Id,
+					Name = channel.Name,
+					Selected = channel.ChannelCourses
+					.Any(c => c.CourseId == id)
+				});
+			}
+
+			return Json(viewModel);
 		}
 	}
 }

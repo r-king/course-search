@@ -1,6 +1,7 @@
 ﻿using CourseSearch.Core.Models;
 using CourseSearch.Core.Repositories;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 
 namespace CourseSearch.Persitence.Repositories
@@ -27,7 +28,16 @@ namespace CourseSearch.Persitence.Repositories
 
 		public IEnumerable<ChannelCourse> GetChannelCourses(int channelId)
 		{
-			return context.ChannelCourses.Where(c => c.ChannelId == channelId);
+			return context.ChannelCourses
+				.Where(c => c.ChannelId == channelId);
+		}
+
+		public IEnumerable<Course> GetCourses(int channelId)
+		{
+			return context.ChannelCourses
+				.Where(c => c.ChannelId == channelId)
+				.Select(c => c.Course)
+				.Include(c => c.Publisher);
 		}
 
 		public void RemoveCourseFromChannel(ChannelCourse channelCourse)
