@@ -1,6 +1,10 @@
 ﻿@model CourseSearch.Core.ViewModels.CoursesViewModel
 
-<h4>My Bookmarked Courses</h4>
+@{
+    ViewBag.Title = "Bookmarks";
+}
+
+<h4>My Bookmarks</h4>
 
 <div id="courses-list">
     @Html.Partial("_CoursesPartial", Model)

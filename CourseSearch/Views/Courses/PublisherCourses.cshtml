@@ -1,5 +1,9 @@
 ﻿@model CourseSearch.Core.ViewModels.PublisherCoursesViewModel
 
+@{
+    ViewBag.Title = Model.Publisher.Name;
+}
+
 <h4>@Model.Publisher.Name</h4>
 
 <div id="courses-list">

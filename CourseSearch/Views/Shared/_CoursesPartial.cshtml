@@ -3,7 +3,7 @@
 @foreach (var course in Model.Courses)
 {
     <div class="course">
-        <div style="width: -webkit-fill-available">
+        <div class="w-100">
             <div class="course-title">
                 <a target="_blank" rel="noopener noreferrer" href="@course.Url">@course.Title</a>
             </div>
@@ -18,9 +18,10 @@
                 </div>
             </div>
         </div>
+
         @if (Model.ShowActions)
         {
-            // add to channel
+
             <div class="dropdown course-action">
                 <i class="fas fa-ellipsis-h" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 </i>
@@ -31,14 +32,14 @@
                     </li>
                 </ul>
             </div>
-
-            // bookmarks
             <div class="course-action">
                 <i data-course-id="@course.Id" class="@(Model.Bookmarks.Contains(course.Id) ? "fas" : "far") fa-bookmark fa-lg js-toggle-bookmark"></i>
             </div>
+
         }
         <div class="course-price">
             @course.GetDisplayPrice()
         </div>
     </div>
+
 }

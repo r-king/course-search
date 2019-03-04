@@ -1,5 +1,9 @@
 ﻿@model CourseSearch.Core.ViewModels.ChannelDetailsViewModel
 
+@{
+    ViewBag.Title = Model.Channel.Name;
+}
+
 <div style="display: flex" id="channels-header">
     <h4>@Model.Channel.Name</h4>
     <div style="float: right; margin-left: auto;">
@@ -82,5 +86,5 @@
                 }
             });
         });
-    </script>    
+    </script>
 }

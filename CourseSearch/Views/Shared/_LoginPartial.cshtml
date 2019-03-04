@@ -1,30 +1,22 @@
 ﻿@using Microsoft.AspNet.Identity
 @if (Request.IsAuthenticated)
 {
-    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-nav ml-auto" }))
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
     {
         @Html.AntiForgeryToken()
 
         <ul class="navbar-nav ml-auto">
 
-            <li class="nav-item">
-                <a class="nav-link" href="@Url.Action("Index", "Channels")">
-                    <i class="fas fa-broadcast-tower"></i>
-                </a>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link" href="@Url.Action("Bookmarked", "Courses")">
-                    <i class="fas fa-bookmark"></i>
-                </a>
-            </li>
+            <li class="nav-item">@Html.ActionLink("Bookmarks", "Bookmarked", "Courses", routeValues: null, htmlAttributes: new { id = "bookmarksLink", @class = "nav-link menu-action" })</li>
+            <li class="nav-item">@Html.ActionLink("Channels", "Index", "Channels", routeValues: null, htmlAttributes: new { id = "channelsLink", @class = "nav-link menu-action" })</li>
 
             <li class="nav-item dropdown">
 
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="dropdown-toggle nav-link" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     @User.Identity.GetUserName()
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+                    @Html.ActionLink("Manage", "Index", "Manage", routeValues: null, htmlAttributes: new { @class = "dropdown-item" })
                     <a class="dropdown-item" href="javascript:document.getElementById('logoutForm').submit()">Log off</a>
                 </div>
             </li>
